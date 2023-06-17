@@ -1,0 +1,30 @@
+# Anh Vo
+# PSID: 2037824
+# CIS 2348 Homework 1 - Coding Problem 1
+
+import datetime
+
+# Prompt the user to enter the current date by month, day and year
+current_month = int(input('Enter current month from 1 to 12: '))
+current_day = int(input('Enter current day from 1 to 31: '))
+current_year = int(input('Enter current year: '))
+
+# Prompt the user to enter the birthday by month, day and year
+birthday_month = int(input('\nEnter your birthday month from 1 to 12: '))
+birthday_day = int(input('Enter your birthday day from 1 to 31: '))
+birthday_year = int(input('Enter your birthday year: '))
+
+# Calculate age
+current_date = datetime.date(current_year, current_month, current_day)
+birth_date = datetime.date(birthday_year, birthday_month, birthday_day)
+age = current_date.year - birth_date.year
+
+# Check if it's the user's actual birthday
+is_birthday = (current_date.month, current_date.day) == (birth_date.month, birth_date.day)
+
+# Output the age
+print(f"\nYou are {age} years old.")
+
+# Output "Happy Birthday!" message if it's the user's actual birthday
+if is_birthday:
+    print("\nHappy Birthday!")
