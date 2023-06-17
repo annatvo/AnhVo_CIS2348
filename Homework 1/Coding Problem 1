@@ -18,7 +18,7 @@ birthday_year = int(input('Enter your birthday year: '))
 age = current_year - birthday_year
 
 # Output the age
-print(f"\nYou are {age} years old.")
+print(f"\nYour current age is {age} years old.")
 
 # Output "Happy Birthday!" message if it's the user's actual birthday
 if current_month == birthday_month and current_day == birthday_day:
