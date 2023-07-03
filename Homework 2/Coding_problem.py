@@ -21,10 +21,14 @@ def parse_date(date_str):
 
     return '{}/{}/{}'.format(month, day, year)
 
-# Part B: Read dates from "inputDates.txt" file
-with open("inputDates.txt", 'r') as file:
-    dates = [parse_date(date) for date in file if is_date(date)]
+def main():
+    # Part B: Read dates from "inputDates.txt" file
+    with open("inputDates.txt", 'r') as file:
+        dates = [parse_date(date) for date in file if is_date(date)]
 
-# Part C: Write correct dates to "parsedDates.txt" file
-with open("parsedDates.txt", 'w') as file:
-    file.write(''.join(dates))
+    # Part C: Write correct dates to "parsedDates.txt" file
+    with open("parsedDates.txt", 'w') as file:
+        file.write(''.join(dates))
+
+if __name__ == "__main__":
+    main()
