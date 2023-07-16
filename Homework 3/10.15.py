@@ -1,3 +1,7 @@
+# Anh Vo 
+# 2037824
+# Lab 10.15
+
 class Team:
     def __init__(self):
         self.teamname = 'none'
