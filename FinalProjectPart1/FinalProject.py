@@ -146,7 +146,7 @@ def main():
     # Read service dates list
     read_service_dates(items, 'ServiceDatesList.csv')
 
-    # Generate inventory reports
+    # Create inventory reports
     full_inventory_report(items)
     item_type_inventory_report(items)
     past_service_date_inventory_report(items)
