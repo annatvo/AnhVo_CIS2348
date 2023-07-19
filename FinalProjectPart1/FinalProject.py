@@ -8,13 +8,13 @@ from datetime import datetime
 
 # Define the class to represent an item
 class Item:
-    def __init__(self, item_id, manufacturer, item_type, price, service_date, is_damaged):
+    def __init__(self, item_id, manufacturer, item_type, price, service_date, condition):
         self.item_id = item_id
         self.manufacturer = manufacturer
         self.item_type = item_type
         self.price = price
         self.service_date = service_date
-        self.is_damaged = is_damaged
+        self.condition = condition
 
 
 # Read data from a CSV file (ManufacturerList.csv) and create a dictionary of items
@@ -26,8 +26,8 @@ def read_csv_file(file_name):
             item_id = row[0]
             manufacturer = row[1]
             item_type = row[2]
-            is_damaged = True if len(row) > 3 and row[3].lower() == 'damaged' else False
-            items_dict[item_id] = Item(item_id, manufacturer, item_type, None, None, is_damaged)
+            condition = 'damaged' if len(row) > 3 and row[3].lower() == 'damaged' else False
+            items_dict[item_id] = Item(item_id, manufacturer, item_type, None, None, condition)
     return items_dict
 
 
@@ -61,7 +61,7 @@ def full_inventory_report(items_dict):
         writer.writerow(['Item ID', 'Manufacturer', 'Item Type', 'Price', 'Service Date', 'Condition'])
         for item in sorted_items:
             writer.writerow([item.item_id, item.manufacturer, item.item_type,
-                             item.price, item.service_date, 'damaged' if item.is_damaged else ''])
+                             item.price, item.service_date, 'damaged' if item.condition else ''])
     csvfile.close()
 
 
@@ -87,7 +87,7 @@ def item_type_inventory_report(items_dict):
 
             for item in sorted_items:
                 writer.writerow([item.item_id, item.manufacturer, item.price,
-                                 item.service_date, 'damaged' if item.is_damaged else ''])
+                                 item.service_date, 'damaged' if item.condition else ''])
     csvfile.close()
 
 
@@ -107,7 +107,7 @@ def past_service_date_inventory_report(items_dict):
         writer.writerow(['Item ID', 'Manufacturer', 'Item Type', 'Price', 'Service Date', 'Condition'])
         for item in sorted_items:
             writer.writerow([item.item_id, item.manufacturer, item.item_type,
-                             item.price, item.service_date, 'damaged' if item.is_damaged else ''])
+                             item.price, item.service_date, 'damaged' if item.condition else ''])
     csvfile.close()
 
 
@@ -119,7 +119,7 @@ def sorted_by_service_date(item):
 
 # Damage inventory report sorted by price from the most expensive to the least expensive
 def damaged_inventory_report(items_dict):
-    damaged_items = [item for item in items_dict.values() if item.is_damaged]
+    damaged_items = [item for item in items_dict.values() if item.condition]
     sorted_items = sorted(damaged_items, key=sorted_by_price, reverse=True)
     with open('DamagedInventory.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
