@@ -1,6 +1,6 @@
 # Anh Vo
 # 2037824
-# Final project
+# Final project part 1
 
 import csv
 from datetime import datetime
